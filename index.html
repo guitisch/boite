@@ -43,13 +43,30 @@
             board.appendChild(newbox)
 
             newbox.addEventListener("click", function(){
-
+                
                 if(i == nb){
                     newbox.classList.add("box-clicked")
+                    //1
+                    if(nb == board.children.length){
+                        alert("VICTOIRE !")
+                    }
                     nb++
                 }
                 //console.log("Boite n°"+ i +",click !")
                 //newbox.classList.add("box-clicked")
+
+                //2
+                else if(i>nb){
+                    alert("erreur, recomencez !")
+                    nb = 1
+                    board.querySelectorAll(".box-clicked").forEach(function(validbox){
+                        validbox.classList.remove("box-clicked")
+                    })
+                }
+                //3
+                else{
+                    alert("Case déjà cliquée!")
+                }
             })
         }
 
