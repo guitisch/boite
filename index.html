@@ -13,7 +13,7 @@
     <div id="board">
     </div>
 
-    <div id="time" class = "time"></div>
+    <div id="time" class="time"></div>
 
     <script>
         /*ici notre code JS */
@@ -41,7 +41,11 @@
                 }, 800)
             }
         }
-
+       /* function timeout(){
+            setTimeout(function(){
+                shuffleChildren(board)
+            }, 100)
+        }*/
         const box = document.createElement("div")
         box.classList.add("box")
         
@@ -53,23 +57,27 @@
             const newbox = box.cloneNode()
             newbox.innerText = i
             board.appendChild(newbox)
-
+            
+            
             newbox.addEventListener("click", function(){
                 
                 if(i == nb){
                     newbox.classList.add("box-clicked")
+                    
                     if(i == 1){
                         chrono()
                     }
-
+                    
                     //1
                     if(nb == board.children.length){
                         board.querySelectorAll(".box").forEach(function(box){
                             showReaction("success", box)
                         })
                         clearTimeout(reglage)
-                    }
+                    }                    
                     nb++
+                    shuffleChildren(board)
+                    
                 }
                 //console.log("Boite n°"+ i +",click !")
                 //newbox.classList.add("box-clicked")
@@ -86,6 +94,7 @@
                     board.querySelectorAll(".box-clicked").forEach(function(validbox){
                         validbox.classList.remove("box-clicked")
                     })
+                    shuffleChildren(board)
                 }
                 //3
                 else{
